@@ -11,6 +11,7 @@ public class Process {
 	private int _modems;
 	private int _cds;
 	
+	//Kurucu
 	public Process(int id, int arrival_time, int priority, int execution_time, int memory_size,
 			   	   int printers, int scanners, int modems, int cds)
 	{
@@ -24,6 +25,8 @@ public class Process {
 		_modems = modems;
 		_cds = cds;
 	}
+	
+	//Diğer sınıflarda kullanılabilmeleri için getter fonksiyonları
 	
 	public int getId()
 	{

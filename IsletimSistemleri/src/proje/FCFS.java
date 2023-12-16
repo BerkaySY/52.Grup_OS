@@ -1,5 +1,5 @@
 package proje;
 
-public class FCFS {
-
+public class FCFS {	
+	
 }
