@@ -3,9 +3,11 @@ package proje;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
+//  PROSESTEN NE GELECEGİNİ HATIRLAMAK İCİN USTTE BUNU TUTTUM.
 class Proses {
     int arrivalTime;
     int priority;
@@ -35,6 +37,14 @@ public class FCFS {
     public static void main(String[] args) {
         dosyadanOku("giris.txt");
         //FCFS yaklasiminin kodlari ve classi yazilacak. Return etmesine dikkat et!
+        List<Proses> sortedProcesses = sortProcessesByFCFS(processes);
+
+        // Sıralanmış işlemleri yazdırma BUNU RENKLİ YAPMALIYIZZ!!!!
+        for (Proses process : sortedProcesses) {
+            System.out.println("Arrival Time: " + process.arrivalTime + ", Priority: " + process.priority
+                    + ", Processing Time: " + process.processingTime + ", Printers: " + process.printers
+                    + ", Scanners: " + process.scanners + ", Modems: " + process.modems + ", CDs: " + process.CDs);
+        }
     }
     // Dosyadan okuma işlemi gerçekleştiriliyor
     private static void dosyadanOku(String fileName) {
@@ -61,5 +71,11 @@ public class FCFS {
         } catch (FileNotFoundException e) {
             System.out.println("Dosya bulunamadı: " + e.getMessage());
         }
+    }
+    
+    public static List<Proses> sortProcessesByFCFS(List<Proses> processes) {
+        // FCFS algoritması ile işlemleri sıralama
+        processes.sort(Comparator.comparingInt(p -> p.priority));
+        return processes;
     }
 }
