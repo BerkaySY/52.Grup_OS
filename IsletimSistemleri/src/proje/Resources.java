@@ -23,40 +23,40 @@ public class Resources {
         return _available_memory_size;
     }
 
-    public void setAvailableMemorySize(int availableMemorySize) {
-        _available_memory_size = availableMemorySize;
+    public void setAvailableMemorySize(int available_memory_size) {
+        _available_memory_size = available_memory_size;
     }
 
     public int getAvailablePrinters() {
         return _available_printers;
     }
 
-    public void setAvailablePrinters(int availablePrinters) {
-        _available_printers = availablePrinters;
+    public void setAvailablePrinters(int available_printers) {
+        _available_printers = available_printers;
     }
 
     public int getAvailableScanners() {
         return _available_scanners;
     }
 
-    public void setAvailableScanners(int availableScanners) {
-        _available_scanners = availableScanners;
+    public void setAvailableScanners(int available_scanners) {
+        _available_scanners = available_scanners;
     }
 
     public int getAvailableModems() {
         return _available_modems;
     }
 
-    public void setAvailableModems(int availableModems) {
-        _available_modems = availableModems;
+    public void setAvailableModems(int available_modems) {
+        _available_modems = available_modems;
     }
 
     public int getAvailableCDs() {
         return _available_cds;
     }
 
-    public void setAvailableCDs(int availableCDs) {
-        _available_cds = availableCDs;
+    public void setAvailableCDs(int available_cds) {
+        _available_cds = available_cds;
     }
 }
 
