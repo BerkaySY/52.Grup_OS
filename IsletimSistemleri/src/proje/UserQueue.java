@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class UserQueue implements Queue {
-	private List<Process> priority1_queue;
-	private List<Process> priority2_queue;
-	private List<Process> priority3_queue;
+	private List<Process> priority1_queue; //1.öncelikli kuyruk
+	private List<Process> priority2_queue; //2.öncelikli kuyruk
+	private List<Process> priority3_queue; //3.öncelikli kuyruk
 	
 	//Kurucu
 	public UserQueue() {
@@ -38,6 +38,7 @@ public class UserQueue implements Queue {
 			priority3_queue.remove(0);
 	}
 	
+	//Kuyruktaki ilk değeri elde etme
 	public Process getFirst()
 	{
 		if (!priority1_queue.isEmpty())
@@ -50,6 +51,7 @@ public class UserQueue implements Queue {
 		return null;
 	}
 	
+	//Kuyruk Boş mu Kontrol için
 	public boolean isEmpty()
 	{
 		if (!priority1_queue.isEmpty())
@@ -62,6 +64,7 @@ public class UserQueue implements Queue {
 		return true;
 	}
 	
+	//Öncelik Seviyesine göre kuyruğu elde etme
 	public List<Process> getPriQueue(int priority)
 	{
 		if (priority == 1)
@@ -74,11 +77,13 @@ public class UserQueue implements Queue {
 		return null;
 	}
 	
+	//RR için özel ekleme fonksiyonu
 	public void EnqueueRR(Process process)
 	{
 		priority3_queue.add(process);
 	}
 	
+	//RR için çalışma ortamı uygun mu kontrol eder
 	public boolean check4RunRR()
 	{
 		if (priority1_queue.isEmpty() && priority2_queue.isEmpty())
@@ -87,8 +92,10 @@ public class UserQueue implements Queue {
 		return false;
 	}
 	
+	//Proses zaman aşımına uğradı mı kontrol eder ve gerekli işlemleri yapar
 	public void CheckTimeOut(int timer)
 	{
+		//1.Öncelikli Kuyruktaki prosesleri dolaşıp şu anki zaman ile prosesin varış zamanı kontrol edilir.Aradaki fark 20'den büyükse proses silinir.
 		for (int i = 0; i < priority1_queue.size(); i++)
 		{
 			if (timer - priority1_queue.get(i).getArrivalTime() > 20)
@@ -96,6 +103,26 @@ public class UserQueue implements Queue {
 				priority1_queue.get(i).setStatus(ProcessStatus.TIMEOUT);
 				priority1_queue.get(i).PrintProcessError();
 				priority1_queue.remove(i);
+			}	
+		}
+		//2.Öncelikli kuyruktaki prosesleri dolaşıp şu anki zaman ile prosesin varış zamanı kontrol edilir.Aradaki fark 20'den büyükse proses silinir.
+		for (int i = 0; i < priority2_queue.size(); i++)
+		{
+			if (timer - priority2_queue.get(i).getArrivalTime() > 20)
+			{
+				priority2_queue.get(i).setStatus(ProcessStatus.TIMEOUT);
+				priority2_queue.get(i).PrintProcessError();
+				priority2_queue.remove(i);
+			}	
+		}
+		//3.Öncelikli kuyruktaki prosesleri dolaşıp şu anki zaman ile prosesin varış zamanı kontrol edilir.Aradaki fark 20'den büyükse proses silinir.
+		for (int i = 0; i < priority3_queue.size(); i++)
+		{
+			if (timer - priority3_queue.get(i).getArrivalTime() > 20)
+			{
+				priority3_queue.get(i).setStatus(ProcessStatus.TIMEOUT);
+				priority3_queue.get(i).PrintProcessError();
+				priority3_queue.remove(i);
 			}	
 		}
 	}

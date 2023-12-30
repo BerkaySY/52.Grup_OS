@@ -7,23 +7,23 @@ import java.util.ArrayList;
 
 //Tamam
 public class ProcessList {
-	private List<Process> _process_list;
-	int rt_process_count;
-	int not_pri3_process_count;
+	private List<Process> _process_list; //Prosesleri tutan liste
+	int rt_process_count;	//Gerçek zamanlı proses sayısı
 	
+	//Kurucu
 	public ProcessList()
 	{
 		_process_list = new ArrayList<>();
 		rt_process_count = 0;
-		not_pri3_process_count = 0;
 	}
 	
+	//txt içindeki verileri okuyup proses nesnelerini oluşturan fonksiyon
 	public void ReadFile(String file) throws Exception
 	{
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String line;
 		int id = 0;
-		
+		//txt dosyasındaki verileri satır satır okuyarak Proses sınıfında gerekli yerlere atama yapar
 		while ((line = br.readLine()) != null)
 		{
 			String[] tokens = line.split(",");
@@ -40,10 +40,9 @@ public class ProcessList {
 			Process process = new Process(id, arrival_time, priority, execution_time, memory_size,
 										  printers, scanners, modems, cds);
 			_process_list.add(process);
+			//Gerçek zamanlı proses sayısını arttırır
 			if (process.getPriority() == 0)
 				rt_process_count++;
-			else if (process.getPriority() != 3)
-				not_pri3_process_count++;
 			
 			id++;
 		}
@@ -51,26 +50,25 @@ public class ProcessList {
 		br.close();
 	}
 	
+	//Diğer sınıflarda kullanabilmek için getter fonksiyon
 	public List<Process> getProcessList() { return _process_list; }
 	
+	//Proses listesi boş mu kontrol için
 	public boolean isEmpty()
 	{
 		return _process_list.isEmpty();
 	}
 	
+	//Proses listesinin en başındaki prosesi döndürür
 	public Process getFirst()
 	{
 		return _process_list.get(0);
 	}
 	
+	//Gerçek zamanlı proses sayısını döndüren getter fonksiyon
 	public int getRTProcessCount()
 	{
 		return rt_process_count;
-	}
-	
-	public int getNotPri3ProcessCount()
-	{
-		return not_pri3_process_count;
 	}
 	
 	

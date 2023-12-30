@@ -1,5 +1,6 @@
 package proje;
 
+//Prosesin durumlarını gösterebilmek için gerekli enum sınıfı
 public enum ProcessStatus 
 {
 	STARTED, 

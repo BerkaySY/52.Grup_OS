@@ -3,9 +3,13 @@ package proje;
 public class GBG {
 	public int runGBG(UserQueue user_queue, RealTimeQueue rt_queue, ResourceManager resource_manager, MemoryManager memory_manager, int timer, int q)
 	{
+		rt_queue.CheckTimeOut(timer);
+		user_queue.CheckTimeOut(timer);
 		Process process = user_queue.getFirst();
+		
 		if (!rt_queue.isEmpty())
 		{
+			
 			if (process.getStatus() != null && process.getStatus() != ProcessStatus.SUSPENDED)
 			{
 				process.setStatus(ProcessStatus.SUSPENDED);

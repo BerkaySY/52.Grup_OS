@@ -1,16 +1,20 @@
 package proje;
 
+
+
 public class FCFS {	
 	//Gerçek Zamanlı kuyrukların hepsi bitecek
 	public int runFCFS(RealTimeQueue rt_queue,UserQueue user_queue, ProcessList process_list, ResourceManager resource_manager, 
 					   MemoryManager memory_manager, int timer, int rt_process_count)
 	{
+		
 		while (rt_process_count != 0)
 		{
+			rt_queue.CheckTimeOut(timer);
+			user_queue.CheckTimeOut(timer);
 			if (!rt_queue.isEmpty())
 			{
 				Process process = rt_queue.getFirst();
-			
 				int process_burst_time = process.getBurstTime();
 				while (process_burst_time != 0)
 				{
@@ -18,10 +22,12 @@ public class FCFS {
 						process.setStatus(ProcessStatus.STARTED);
 					else if (process.getBurstTime() > 0 && process.getStatus() != ProcessStatus.RUNNING)
 						process.setStatus(ProcessStatus.RUNNING);
-				
+					
 					process.PrintProcess();
 					process_burst_time--;
 					process.setBurstTime(process_burst_time);
+					rt_queue.CheckTimeOut(timer);
+					user_queue.CheckTimeOut(timer);
 					addProcess2Queues(rt_queue, user_queue, process_list, resource_manager, memory_manager, timer, rt_process_count);
 					timer++;
 				}

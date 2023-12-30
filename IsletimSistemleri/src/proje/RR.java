@@ -6,6 +6,7 @@ public class RR {
 		Process process;
         while (!user_queue.getPriQueue(3).isEmpty())
         {
+			user_queue.CheckTimeOut(timer);
             process = user_queue.getFirst();
             int process_burst_time = process.getBurstTime();
             if (process_burst_time != 0)

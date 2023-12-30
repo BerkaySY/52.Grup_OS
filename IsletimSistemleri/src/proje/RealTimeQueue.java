@@ -25,24 +25,43 @@ public class RealTimeQueue {
 			realtime_queue.remove(0);
 	}
 	
-	//Diğer sınıflarda kullanılabilmesi için kuyruk boş mu işlemi
+	//Kuyruk boş mu işlemi
 	public boolean isEmpty()
 	{
 		return realtime_queue.isEmpty();
 	}
 	
+	//Kuyruğu elde etmek için getter fonksiyon
 	public List<Process> getRTQueue()
 	{
 		return realtime_queue;
 	}
 	
+	//Kuyruktaki ilk prosesi elde etmek için getter fonksiyon
 	public Process getFirst()
 	{
 		return realtime_queue.get(0);
 	}
 	
+	//Kuyruğun boyutunu elde etmek için getter fonksiyon
 	public int getSize()
 	{
 		return realtime_queue.size();
 	}
+	
+	//Proses zaman aşımına uğradı mı kontrol eder ve gerekli işlemleri yapar
+	public void CheckTimeOut(int timer)
+	{
+		//Gerçek Zamanlı Kuyruktaki prosesleri dolaşıp şu anki zaman ile prosesin varış zamanı kontrol edilir.Aradaki fark 20'den büyükse proses silinir.
+		for (int i = 0; i < realtime_queue.size(); i++)
+		{
+			if (timer - realtime_queue.get(i).getArrivalTime() > 20)
+			{
+				realtime_queue.get(i).setStatus(ProcessStatus.TIMEOUT);
+				realtime_queue.get(i).PrintProcessError();
+				realtime_queue.remove(i);
+			}	
+		}
+	}
+	
 }

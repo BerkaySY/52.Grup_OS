@@ -1,10 +1,10 @@
 package proje;
 
 public class Resource {
-	private int _available_printers;
-	private int _available_scanners;
-	private int _available_modems;
-	private int _available_cds;
+	private int _available_printers; //Kullanılabilir Yazıcılar
+	private int _available_scanners; //Kullanılabilir Tarayıcılar
+	private int _available_modems;	 //Kullanılabilir Modemler
+	private int _available_cds;		 //Kullanılabilir CDler
 	
 	//Kurucu
 	public Resource()
