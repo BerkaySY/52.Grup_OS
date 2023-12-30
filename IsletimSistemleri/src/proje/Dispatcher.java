@@ -75,7 +75,7 @@ public class Dispatcher {
 					timer = rr.runRR(user_queue, resource_manager, memory_manager, timer, q);
 			}
 
-			System.out.println("Program Sonlandı!");
+			System.out.println("Program Sonlandı!");//
 
 
 		}
