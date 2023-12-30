@@ -86,4 +86,17 @@ public class UserQueue implements Queue {
 		
 		return false;
 	}
+	
+	public void CheckTimeOut(int timer)
+	{
+		for (int i = 0; i < priority1_queue.size(); i++)
+		{
+			if (timer - priority1_queue.get(i).getArrivalTime() > 20)
+			{
+				priority1_queue.get(i).setStatus(ProcessStatus.TIMEOUT);
+				priority1_queue.get(i).PrintProcessError();
+				priority1_queue.remove(i);
+			}	
+		}
+	}
 }

@@ -50,7 +50,10 @@ public class Dispatcher {
 					if (!memory_manager.isValid(process))
 					{
 						if (priority == 0)
+						{
 							process.setStatus(ProcessStatus.REJECTEDREALMEM);
+							rt_process_count--;
+						}
 						else 
 							process.setStatus(ProcessStatus.REJECTEDUSERMEM);
 						process.PrintProcessError();
@@ -58,7 +61,10 @@ public class Dispatcher {
 					else if (!resource_manager.isValid(process))
 					{
 						if (priority == 0)
+						{
 							process.setStatus(ProcessStatus.REJECTEDREALRESOURCE);
+							rt_process_count--;
+						}
 						else
 							process.setStatus(ProcessStatus.REJECTEDUSERRESOURCE);
 						process.PrintProcessError();

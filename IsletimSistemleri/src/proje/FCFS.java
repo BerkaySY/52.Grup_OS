@@ -22,7 +22,7 @@ public class FCFS {
 					process.PrintProcess();
 					process_burst_time--;
 					process.setBurstTime(process_burst_time);
-					addProcess2Queues(rt_queue, user_queue, process_list, resource_manager, memory_manager, timer);
+					addProcess2Queues(rt_queue, user_queue, process_list, resource_manager, memory_manager, timer, rt_process_count);
 					timer++;
 				}
 			
@@ -30,20 +30,22 @@ public class FCFS {
 				process.PrintProcess();
 				rt_queue.Dequeue();
 				rt_process_count--;
-				addProcess2Queues(rt_queue, user_queue, process_list, resource_manager, memory_manager, timer);
+				addProcess2Queues(rt_queue, user_queue, process_list, resource_manager, memory_manager, timer, rt_process_count);
 				timer++;
 			}
 			else
 			{
-				addProcess2Queues(rt_queue, user_queue, process_list, resource_manager, memory_manager, timer);
+				addProcess2Queues(rt_queue, user_queue, process_list, resource_manager, memory_manager, timer, rt_process_count);
 				timer++;
+				System.out.print(rt_process_count);
 			}
 		}			
+		
 		return timer;
 	}
 	
 	private void addProcess2Queues(RealTimeQueue rt_queue, UserQueue user_queue,  ProcessList process_list, 
-								   ResourceManager resource_manager, MemoryManager memory_manager, int timer)
+								   ResourceManager resource_manager, MemoryManager memory_manager, int timer, int rt_process_count)
 	{
 		if (!process_list.isEmpty())
 		{
@@ -54,7 +56,10 @@ public class FCFS {
 				if (!memory_manager.isValid(process))
 				{
 					if (priority == 0)
+					{
 						process.setStatus(ProcessStatus.REJECTEDREALMEM);
+						rt_process_count--;
+					}
 					else 
 						process.setStatus(ProcessStatus.REJECTEDUSERMEM);
 					process.PrintProcessError();
@@ -62,7 +67,10 @@ public class FCFS {
 				else if (!resource_manager.isValid(process))
 				{
 					if (priority == 0)
+					{
 						process.setStatus(ProcessStatus.REJECTEDREALRESOURCE);
+						rt_process_count--;
+					}
 					else
 						process.setStatus(ProcessStatus.REJECTEDUSERRESOURCE);
 					process.PrintProcessError();
@@ -79,4 +87,6 @@ public class FCFS {
 			}
 		}
 	}
+	
+	
 }

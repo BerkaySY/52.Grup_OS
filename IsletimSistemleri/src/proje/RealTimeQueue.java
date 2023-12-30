@@ -40,4 +40,9 @@ public class RealTimeQueue {
 	{
 		return realtime_queue.get(0);
 	}
+	
+	public int getSize()
+	{
+		return realtime_queue.size();
+	}
 }
