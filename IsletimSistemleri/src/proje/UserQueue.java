@@ -3,10 +3,10 @@ package proje;
 import java.util.List;
 import java.util.ArrayList;
 
-public class UserQueue {
-	private List<Process> priority1_queue; //1.Öncelik
-	private List<Process> priority2_queue; //2.Öncelik
-	private List<Process> priority3_queue; //3.Öncelik
+public class UserQueue implements Queue {
+	private List<Process> priority1_queue;
+	private List<Process> priority2_queue;
+	private List<Process> priority3_queue;
 	
 	//Kurucu
 	public UserQueue() {
@@ -19,20 +19,12 @@ public class UserQueue {
 	public void Enqueue(Process process)
 	{
 		int priority = process.getPriority();
-		switch (priority)
-		{
-			case 1:
-				priority1_queue.add(process);
-				break;
-			case 2:
-				priority2_queue.add(process);
-				break;
-			case 3:
-				priority3_queue.add(process);
-				break;
-			default:
-				break;
-		}
+		if (priority == 1)
+			priority1_queue.add(process);
+		else if (priority == 2)
+			priority2_queue.add(process);
+		else if (priority == 3)
+			priority3_queue.add(process);
 	}
 	
 	//Kuyruktan Çıkarma İşlemi
@@ -46,11 +38,52 @@ public class UserQueue {
 			priority3_queue.remove(0);
 	}
 	
-	//Diğer Sınıflarda Kullanılması için Boş mu kontrol eden fonksiyon
-	public boolean isEmpty()
+	public Process getFirst()
 	{
-		return priority1_queue.isEmpty() && priority2_queue.isEmpty()
-			   && priority3_queue.isEmpty();
+		if (!priority1_queue.isEmpty())
+			return priority1_queue.get(0);
+		else if (!priority2_queue.isEmpty())
+			return priority2_queue.get(0);
+		else if (!priority3_queue.isEmpty())
+			return priority3_queue.get(0);
+		
+		return null;
 	}
 	
+	public boolean isEmpty()
+	{
+		if (!priority1_queue.isEmpty())
+			return priority1_queue.isEmpty();
+		else if (!priority2_queue.isEmpty())
+			return priority2_queue.isEmpty();
+		else if (!priority3_queue.isEmpty())
+			return priority3_queue.isEmpty();
+		
+		return true;
+	}
+	
+	public List<Process> getPriQueue(int priority)
+	{
+		if (priority == 1)
+			return priority1_queue;
+		else if (priority == 2)
+			return priority2_queue;
+		else if (priority == 3)
+			return priority3_queue;
+		
+		return null;
+	}
+	
+	public void EnqueueRR(Process process)
+	{
+		priority3_queue.add(process);
+	}
+	
+	public boolean check4RunRR()
+	{
+		if (priority1_queue.isEmpty() && priority2_queue.isEmpty())
+			return true;
+		
+		return false;
+	}
 }

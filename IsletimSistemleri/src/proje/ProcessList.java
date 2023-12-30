@@ -9,11 +9,13 @@ import java.util.ArrayList;
 public class ProcessList {
 	private List<Process> _process_list;
 	int rt_process_count;
+	int not_pri3_process_count;
 	
 	public ProcessList()
 	{
 		_process_list = new ArrayList<>();
 		rt_process_count = 0;
+		not_pri3_process_count = 0;
 	}
 	
 	public void ReadFile(String file) throws Exception
@@ -40,6 +42,9 @@ public class ProcessList {
 			_process_list.add(process);
 			if (process.getPriority() == 0)
 				rt_process_count++;
+			else if (process.getPriority() != 3)
+				not_pri3_process_count++;
+			
 			id++;
 		}
 		
@@ -47,4 +52,26 @@ public class ProcessList {
 	}
 	
 	public List<Process> getProcessList() { return _process_list; }
+	
+	public boolean isEmpty()
+	{
+		return _process_list.isEmpty();
+	}
+	
+	public Process getFirst()
+	{
+		return _process_list.get(0);
+	}
+	
+	public int getRTProcessCount()
+	{
+		return rt_process_count;
+	}
+	
+	public int getNotPri3ProcessCount()
+	{
+		return not_pri3_process_count;
+	}
+	
+	
 }

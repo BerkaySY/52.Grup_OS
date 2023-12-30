@@ -30,4 +30,14 @@ public class RealTimeQueue {
 	{
 		return realtime_queue.isEmpty();
 	}
+	
+	public List<Process> getRTQueue()
+	{
+		return realtime_queue;
+	}
+	
+	public Process getFirst()
+	{
+		return realtime_queue.get(0);
+	}
 }

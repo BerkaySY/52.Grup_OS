@@ -9,8 +9,7 @@ public class ResourceManager {
 	}
 	public void AllocateResources(Process process)
 	{
-		if (areResourcesAvailable(process))
-			UpdateResources(process, 1);
+		UpdateResources(process, 1);
 	}
 	
 	public void DeallocateResources(Process process)
@@ -31,17 +30,6 @@ public class ResourceManager {
 		_resources.setAvailableCDs(available_cds);
 	}
 	
-	private boolean areResourcesAvailable(Process process)
-	{
-		if (_resources.getAvailablePrinters() >= process.getPrinters() &&
-			_resources.getAvailableScanners() >= process.getScanners() &&
-			_resources.getAvailableModems()   >= process.getModems()   &&
-			_resources.getAvailableCDs()      >= process.getCDs())
-			return true;
-		
-		return false;
-	}
-	
 	public boolean areResourcesEnough(Process process)
 	{
 		if (_resources.getAvailablePrinters() < process.getPrinters() &&
@@ -50,6 +38,23 @@ public class ResourceManager {
 			_resources.getAvailableCDs()      < process.getCDs())
 			return false;
 			
+		return true;
+	}
+	
+	public boolean isValid(Process process)
+	{
+		if(process.getPriority() == 0)
+		{
+			if (process.getPrinters() > 0 || process.getScanners() > 0 || process.getModems() > 0 || process.getCDs() > 0)
+				return false;
+		}
+			
+		else
+		{
+			if (process.getPrinters() > 2 || process.getScanners() > 1 || process.getModems() > 1 || process.getCDs() > 2)
+				return false;
+		}
+		
 		return true;
 	}
 }
