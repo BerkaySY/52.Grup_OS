@@ -1,6 +1,7 @@
 package proje;
 
-public class MemoryBlock {
+public class MemoryBlock 
+{
 	private int _pid;  //Proses ID
 	private int _size; //Bellek Boyutu
 	

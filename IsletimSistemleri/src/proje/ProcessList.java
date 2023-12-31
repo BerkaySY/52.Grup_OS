@@ -6,7 +6,8 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 //Tamam
-public class ProcessList {
+public class ProcessList 
+{
 	private List<Process> _process_list; //Prosesleri tutan liste
 	int rt_process_count;	//Gerçek zamanlı proses sayısı
 	
@@ -39,6 +40,7 @@ public class ProcessList {
 			
 			Process process = new Process(id, arrival_time, priority, execution_time, memory_size,
 										  printers, scanners, modems, cds);
+			//Prosesi proses listesine ekler.
 			_process_list.add(process);
 			//Gerçek zamanlı proses sayısını arttırır
 			if (process.getPriority() == 0)

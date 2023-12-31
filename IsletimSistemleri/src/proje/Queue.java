@@ -1,7 +1,8 @@
 package proje;
 
 //Gerçek zamanlı ve kullanıcı kuyruklarında kullanmak için arayüz tanımlandı
-interface Queue {
+interface Queue 
+{
 	public void Enqueue(Process process); 
 	public void Dequeue();
 	public Process getFirst();

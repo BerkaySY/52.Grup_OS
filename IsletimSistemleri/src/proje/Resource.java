@@ -1,6 +1,7 @@
 package proje;
 
-public class Resource {
+public class Resource 
+{
 	private int _available_printers; //Kullanılabilir Yazıcılar
 	private int _available_scanners; //Kullanılabilir Tarayıcılar
 	private int _available_modems;	 //Kullanılabilir Modemler

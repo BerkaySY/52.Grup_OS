@@ -2,7 +2,8 @@ package proje;
 
 import java.util.Random;
 
-public class Color {
+public class Color 
+{
 	private String color;
 	
 	//Kurucu
@@ -12,10 +13,7 @@ public class Color {
 	}
 	
 	//Rengi elde etmek için getter fonksiyonu
-	public String getColor()
-	{
-		return color;
-	}
+	public String getColor() { return color; }
 	
 	//Renk değerini hex olarak elde etmek için kullanılan fonksiyon
     private String getHexColor() {

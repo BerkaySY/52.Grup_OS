@@ -3,7 +3,8 @@ package proje;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RealTimeQueue {
+public class RealTimeQueue 
+{
 	private List<Process> realtime_queue;
 	
 	//Kurucu
@@ -37,13 +38,13 @@ public class RealTimeQueue {
 		return realtime_queue;
 	}
 	
-	//Kuyruktaki ilk prosesi elde etmek için getter fonksiyon
+	//Kuyruktaki ilk prosesi elde etmek için 
 	public Process getFirst()
 	{
 		return realtime_queue.get(0);
 	}
 	
-	//Kuyruğun boyutunu elde etmek için getter fonksiyon
+	//Kuyruğun boyutunu elde etmek için
 	public int getSize()
 	{
 		return realtime_queue.size();
